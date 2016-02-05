@@ -1,4 +1,4 @@
-/*!    SWFObject v2.3.20160205 <https://github.com/hrundik/swfobject>
+/*!    SWFObject v2.3.20160205 <https://github.com/hrundik/swfobject/tree/proper-domcontentloaded>
     is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
