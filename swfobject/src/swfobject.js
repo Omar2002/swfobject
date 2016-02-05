@@ -115,7 +115,7 @@ var swfobject = function () {
             if (ua.wk) {
                 (function checkDomLoadedWK() {
                     if (isDomLoaded) { return; }
-                    if (!/loaded|complete/.test(doc.readyState)) {
+                    if (!/interactive|loaded|complete/.test(doc.readyState)) {
                         setTimeout(checkDomLoadedWK, 0);
                         return;
                     }
