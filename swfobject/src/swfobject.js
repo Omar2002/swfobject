@@ -1,4 +1,4 @@
-/*!    SWFObject v2.3.20160205 <https://github.com/hrundik/swfobject/tree/proper-domcontentloaded>
+/*!    SWFObject v2.3.20170324 <https://github.com/omar2002/swfobject/tree/fix-permission-denited>
     is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
@@ -129,8 +129,8 @@ var swfobject = function () {
         if (isDomLoaded || !document.getElementsByTagName("body")[0]) { return; }
         try { // test if we can really add/remove elements to/from the DOM; we don't want to fire it too early
             var t, span = createElement("span");
-            span.style.display = "none"; //hide the span in case someone has styled spans via CSS
             t = doc.getElementsByTagName("body")[0].appendChild(span);
+            span.style.display = "none"; //hide the span in case someone has styled spans via CSS
             t.parentNode.removeChild(t);
             t = null; //clear the variables
             span = null;
@@ -188,9 +188,9 @@ var swfobject = function () {
     function testPlayerVersion() {
         var b = doc.getElementsByTagName("body")[0];
         var o = createElement(OBJECT);
+        var t = b.appendChild(o);
         o.setAttribute("style", "visibility: hidden;");
         o.setAttribute("type", FLASH_MIME_TYPE);
-        var t = b.appendChild(o);
         if (t) {
             var counter = 0;
             (function checkGetVariable() {
@@ -479,9 +479,9 @@ var swfobject = function () {
 
     function createObjParam(el, pName, pValue) {
         var p = createElement("param");
+        el.appendChild(p);
         p.setAttribute("name", pName);
         p.setAttribute("value", pValue);
-        el.appendChild(p);
     }
 
     /* Cross-browser SWF removal
@@ -577,9 +577,9 @@ var swfobject = function () {
         if (!dynamicStylesheet || dynamicStylesheetMedia != m) {
             // create dynamic stylesheet + get a global reference to it
             var s = createElement("style");
+            dynamicStylesheet = h.appendChild(s);
             s.setAttribute("type", "text/css");
             s.setAttribute("media", m);
-            dynamicStylesheet = h.appendChild(s);
             if (ua.ie && typeof doc.styleSheets !== UNDEF && doc.styleSheets.length > 0) {
                 dynamicStylesheet = doc.styleSheets[doc.styleSheets.length - 1];
             }
